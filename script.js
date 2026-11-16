@@ -4,8 +4,15 @@ const sun = document.getElementById('sun');
 const sunMenu = document.getElementById('sun-menu');
 
 const sun1 = document.getElementById('sun-menu-option-1');
+const closeButton = document.getElementById('close-button');
 
 let sunMenuState = 0
+
+closeButton.addEventListener('click', event => {
+    console.log("Close button clicked");
+    sunMenu.classList.add('hidden');
+    sunMenuState = 0;
+})
 
 sun.addEventListener('click', event => {
     console.log("Sun Clicked");
