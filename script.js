@@ -1,6 +1,9 @@
 const clouds = document.querySelectorAll('.cloud');
+const main = document.getElementById('main')
 const sun = document.getElementById('sun');
-const sunMenu = document.getElementById('sun-menu')
+const sunMenu = document.getElementById('sun-menu');
+
+const sun1 = document.getElementById('sun-menu-option-1');
 
 let sunMenuState = 0
 
@@ -14,6 +17,14 @@ sun.addEventListener('click', event => {
         sunMenu.classList.add('hidden');
         sunMenuState = 0;
     }
+})
+
+sun1.addEventListener('click', event => {
+    console.log("Option 1 clicked");
+    const newCloud = document.createElement('div');
+    newCloud.classList.add('cloud');
+    main.appendChild(newCloud);
+
 })
 
 clouds.forEach((cloud) => {
