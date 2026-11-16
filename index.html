@@ -5,36 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sky</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 
 <body>
+    <div class="logo">
+        <h1>sky</h1>
+    </div>
+
     <main id="main">
-        <div class="logo">
-            <h1>sky</h1>
-        </div>
 
-        <div class="cloud">
-            <h3>very big title</h3>
-        </div>
-
-        <div class="sun" id="sun"></div>
-
-        <div class="hidden" id="sun-menu">
-            <div id="sun-menu-header">
-                <h3>Sun Menu</h3>
-                <button class="close-symbol" aria-label="Close" id="close-button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <ul id="sun-menu-list">
-                <li class="sun-menu-option" id="sun-menu-option-1">
-                    <h3>Create a cloud</h3>
-                </li>
-            </ul>
-        </div>
     </main>
+
+    <div class="sun" id="sun"></div>
+
+    <div class="hidden" id="sun-menu">
+        <div id="sun-menu-header">
+            <h3>Sun Menu</h3>
+            <button class="close-symbol" aria-label="Close" id="close-button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <ul id="sun-menu-list">
+            <li class="sun-menu-option" id="sun-menu-option-1">
+                <h3>Create a cloud</h3>
+            </li>
+        </ul>
+    </div>
 
 </body>
 
