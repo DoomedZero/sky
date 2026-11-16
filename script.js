@@ -1,5 +1,4 @@
 const sun = document.getElementById('sun');
-const clouds = document.querySelectorAll('.cloud');
 const main = document.getElementById('main')
 
 const sunMenu = document.getElementById('sun-menu');
@@ -7,14 +6,14 @@ const editMenu = document.getElementById('edit-menu')
 
 const circle1 = document.getElementById('circle-1');
 const circle2 = document.getElementById('circle-2');
-const editButton = document.getElementById('edit-button');
 
 
 const cloudInnerHTML =
-    `<div id="edit-button">&#9999;</div>
+    `<div class="edit-button">&#9999;</div>
             <h3>Title</h3>`
 
 let sunMenuState = 0
+let editMenuState = 0
 
 sun.addEventListener('click', event => {
     console.log("Sun Clicked");
@@ -38,24 +37,24 @@ circle1.addEventListener('click', event => {
 })
 
 circle2.addEventListener('click', event => {
+    console.log("Close button clicked")
     sunMenu.classList.add('hidden');
     sunMenuState = 0;
 })
 
-clouds.forEach((cloud) => {
-    cloud.addEventListener('click', event => {
-        console.log("Cloud Clicked");
-    })
-});
-
-editButton.addEventListener('click', event => {
-    console.log("Edit Button Clicked");
-    if (sunMenuState == 0) {
-        editMenu.classList.remove('hidden');
-        sunMenuState = 1;
-    }
-    else {
+main.addEventListener('click', event => {
+    if (event.target.matches('.edit-button')) {
+        console.log("Edit Button Clicked")
+        if(editMenuState == 0) {
+            editMenu.classList.remove('hidden');
+            editMenuState = 1;
+        }
+        else {
         editMenu.classList.add('hidden');
-        sunMenuState = 0;
+        editMenuState = 0;
+    }
+    }
+    if (event.target.matches('.cloud')){
+        console.log("Cloud Clicked")
     }
 })

@@ -124,9 +124,9 @@ main {
   right: 25px;
 }
 
-#edit-button {
+.edit-button {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   color: white;
   width: 30px;
   height: 30px;
@@ -141,6 +141,6 @@ main {
   cursor: pointer;
 }
 
-.cloud:hover #edit-button{
+.cloud:hover .edit-button{
   display: flex;
 }
