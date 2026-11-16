@@ -80,29 +80,36 @@ main {
   right: 25px;
 }
 
-#sun-menu {
-  background: hsl(204, 19%, 26%, 0.5);
-  width: fit-content;
-  border-radius: 8px;
-  padding: 8px;
-  padding-bottom: 16px;
+.circle {
+  background: white;
+  color: black;
+  border-radius: 50%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+#circle-1 {
   position: absolute;
   left: 38%;
   top: 40%;
   z-index: 1;
+  padding: 18px;
+  width: 70px;
+  height: 70px;
+
 }
 
-#sun-menu-header {
-  width: 480px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid hsl(204, 19%, 26%, 0.5);
-  margin-bottom: 8px;
+#circle-2 {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 44%;
+  top: 40%;
+  z-index: 1;
+  padding: 8px;
+
 }
 
 .close-symbol {
@@ -110,19 +117,11 @@ main {
   border: none;
   font-size: 28px;
   line-height: 1;
-  color: white;
+  color: black;
   cursor: pointer;
   padding: 4px 8px;
 }
 
 .close-symbol:hover {
-  color: whitesmoke;
-}
-
-#sun-menu-list {
-  list-style: none;
-}
-
-.sun-menu-option {
-  cursor: pointer;
+  color: black;
 }
