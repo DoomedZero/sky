@@ -1,22 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-} 
+  margin: 0;
+  padding: 0;
+}
 
 body {
-    font-family: "Inter", sans-serif;
-    background: skyblue;
-    color: whitesmoke;
+  font-family: "Inter", sans-serif;
+  background: skyblue;
+  color: whitesmoke;
+}
+
+.hidden {
+  display: none !important;
 }
 
 .sun {
-    width: 100px;
-    height: 100px;
-    border-radius: 100%;
-    background: sandybrown;
-    
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background: sandybrown;
+  position: fixed;
+  top: 20px;
+  right: 20px;
 }
 
 /* Base pill shape of the cloud */
@@ -30,10 +36,10 @@ body {
 }
 
 .cloud h3 {
-    color: #36454F;
-    position: relative;
-    z-index: 1;
-    text-align: center;
+  color: #36454F;
+  position: relative;
+  z-index: 1;
+  text-align: center;
 }
 
 /* Shared styles for the top bumps */
@@ -63,14 +69,41 @@ body {
 
 #sun-menu {
   background: hsl(204, 19%, 26%, 0.5);
-  width: 500px;
-  margin: auto;
+  width: fit-content;
   border-radius: 8px;
   padding: 8px;
+  padding-bottom: 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  left: 38%;
+  top: 40%;
+  z-index: 1;
+}
+
+#sun-menu-header {
+  width: 480px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid hsl(204, 19%, 26%, 0.5);
+  margin-bottom: 8px;
+}
+
+.close-symbol {
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  color: white;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.close-symbol:hover {
+  color: whitesmoke;
 }
 
 #sun-menu-list {
@@ -79,8 +112,4 @@ body {
 
 .sun-menu-option {
   cursor: pointer;
-}
-
-.hidden {
-  display: none !important;
 }
