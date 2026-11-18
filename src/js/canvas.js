@@ -1,5 +1,3 @@
-import { clouds } from "./data.js";
-
 const sun = document.getElementById('sun');
 const circle1 = document.getElementById('circle-1');
 
@@ -9,7 +7,7 @@ let canvasName = document.getElementById('canvas-name');
 
 let sunMenuState = 0;
 
-canvasName.textContent = clouds["title"];
+canvasName.textContent = "test";
 
 sun.addEventListener('click', event => {
     console.log("Sun Clicked");

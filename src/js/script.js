@@ -78,6 +78,7 @@ main.addEventListener('click', event => {
         console.log("Cloud Clicked");
         let cloudTitle = document.getElementById(event.target.id).querySelector('h3').textContent;
         console.log("Here we go",cloudTitle);
+        window.location.href = "canvas.html";
     }
 })
 
