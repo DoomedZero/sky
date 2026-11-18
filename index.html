@@ -10,8 +10,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="src/css/style.css">
+    <script type="module" src="src/js/script.js" defer></script>
 </head>
 
 <body>
@@ -29,28 +29,33 @@
         <div class="circle" id="circle-1">
             <h3 id="sun-menu-option-1"> Create Cloud</h3>
         </div>
-        <div class="circle" id="circle-2">
-            <div class="close-symbol" id="sun-menu-option-2">&times;</div>
-        </div>
     </div>
 
     <div class="hidden menu" id="cloud-create-menu">
         <div class="row-1">
+            <h3>Create a cloud</h3>
+            <button class="close-menu" id="">&times;</button>
+        </div>
+        <div class="row-2">
             <label for="cloud-create-name-input">Cloud name: </label>
             <input type="text" name="cloudname" id="cloud-create-name-input" placeholder="Work">
         </div>
-        <div class="row-2">
-            <button type="submit" id="cloud-create-menu-button">Create</button>
+        <div class="row-3">
+            <button class="menu-button"  type="submit" id="cloud-create-menu-button">Create</button>
         </div>
     </div>
 
     <div class="hidden menu" id="cloud-edit-menu">
         <div class="row-1">
+            <h3 id="edit-cloud-message"></h3>
+            <div class="close-symbol" id="">&times;</div>
+        </div>
+        <div class="row-2">
             <label for="cloud-edit-name-input">Cloud name: </label>
             <input type="text" name="cloudname" id="cloud-edit-name-input" placeholder="Work">
         </div>
-        <div class="row-2">
-            <button type="submit" id="cloud-edit-menu-button">Change</button>
+        <div class="row-3">
+            <button class="menu-button" type="submit" id="cloud-edit-menu-button">Change</button>
         </div>
     </div>
 
