@@ -10,26 +10,29 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="src/css/style.css">
-    <script type="module" src="src/js/script.js" defer></script>
+    <link rel="stylesheet" href="src/css/home.css">
+    <script type="module" src="src/js/views/home/home.js" defer></script>
 </head>
 
 <body>
-    <div class="logo">
-        <h1>sky</h1>
-    </div>
 
-    <main id="main">
-
-    </main>
-
-    <div class="sun" id="sun"></div>
-
-    <div class="hidden" id="sun-menu">
-        <div class="circle" id="circle-1">
-            <h3 id="sun-menu-option-1"> Create Cloud</h3>
+    <header>
+        <div class="logo">
+            <h1>sky</h1>
         </div>
-    </div>
+
+        <main id="main">
+
+        </main>
+
+        <div class="sun" id="sun"></div>
+
+        <div class="hidden" id="sun-menu">
+            <div class="circle" id="circle-1">
+                <h3 id="sun-menu-option-1"> Create Cloud</h3>
+            </div>
+        </div>
+    </header>
 
     <div class="hidden menu" id="cloud-create-menu">
         <div class="row-1">
@@ -41,7 +44,7 @@
             <input type="text" name="cloudname" id="cloud-create-name-input" placeholder="Work">
         </div>
         <div class="row-3">
-            <button class="menu-button"  type="submit" id="cloud-create-menu-button">Create</button>
+            <button class="menu-button" type="submit" id="cloud-create-menu-button">Create</button>
         </div>
     </div>
 

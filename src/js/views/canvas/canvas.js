@@ -1,3 +1,5 @@
+import { getActiveCloud } from "../../data.js";
+
 const sun = document.getElementById('sun');
 const circle1 = document.getElementById('circle-1');
 
@@ -7,7 +9,13 @@ let canvasName = document.getElementById('canvas-name');
 
 let sunMenuState = 0;
 
-canvasName.textContent = "Work";
+const activeCloud = getActiveCloud();
+
+if (activeCloud) {
+    canvasName.textContent = activeCloud.title;
+} else {
+    window.location.href = "index.html";
+}
 
 sun.addEventListener('click', event => {
     console.log("Sun Clicked");
@@ -23,11 +31,5 @@ sun.addEventListener('click', event => {
 
 circle1.addEventListener('click', event => {
     console.log("Circle 1: Home clicked");
-    window.location.href = "./index.html";
-})
-
-circle2.addEventListener('click', event => {
-    console.log("Circle 2: Close clicked")
-    sunMenu.classList.add('hidden');
-    sunMenuState = 0;
+    window.location.href = "index.html";
 })

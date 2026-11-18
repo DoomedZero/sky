@@ -1,3 +1,5 @@
+import { getClouds, saveClouds, setActiveCloud } from "../../data.js";
+
 const sun = document.getElementById('sun');
 const sunMenu = document.getElementById('sun-menu');
 const circle1 = document.getElementById('circle-1');
@@ -25,7 +27,7 @@ sun.addEventListener('click', event => {
         sunMenu.classList.remove('hidden');
         sunMenuState = 1;
     }
-    
+
     else {
         sunMenu.classList.add('hidden');
         sunMenuState = 0;
@@ -44,67 +46,103 @@ closeCloudCreateMenu.addEventListener('click', event => {
 
 cloudCreateMenuButton.addEventListener('click', event => {
 
-    let cloudName = cloudCreateMenuInputField.value;
+    let cloudName = cloudCreateMenuInputField.value.trim();
 
-    if (cloudName != "") {
-        const newCloud = document.createElement('div');
-        cloudCount = cloudCount + 1;
-        newCloud.id = `cloud${cloudCount}`
-        newCloud.classList.add('cloud');
-        newCloud.innerHTML =
-            `<div class="edit-button">&#9999;</div>
-            <h3 id=cloud-title>${cloudName}</h3>`;
-        main.appendChild(newCloud);
-        console.log(`Cloud created!, id: ${newCloud.id}`)
+    if (cloudName !== "") {
+
+        const clouds = getClouds();
+
+        const newCloud = {
+            id: crypto.randomUUID(),
+            title: cloudName,
+            content: []
+        };
+
+        clouds.push(newCloud);
+        saveClouds(clouds);
+
+        renderClouds();
 
         cloudCreateMenu.classList.add('hidden');
         cloudCreateMenuInputField.value = "";
     }
 
-    else {
-        console.log("This only comes when input is nothing.");
-    }
-
-})
+});
 
 main.addEventListener('click', event => {
+
     if (event.target.matches('.edit-button')) {
-        console.log("Edit Button Clicked");
+        targetCloud = event.target.closest('.cloud');
+
         cloudEditMenu.classList.remove('hidden');
-        targetCloud = event.target.parentElement;
-        cloudEditMenuTitle.textContent =  `Edit ${targetCloud.querySelector('h3').textContent}`
+
+        cloudEditMenuTitle.textContent =
+            `Edit ${targetCloud.querySelector('h3').textContent}`;
+
+        return;
     }
-    if (event.target.matches('.cloud')) {
-        console.log("Cloud Clicked");
-        let navigateToCloudID = event.target.id;
-        let cloudTitle = document.getElementById(navigateToCloudID).querySelector('h3').textContent;
-        console.log(navigateToCloudID);
-        console.log(cloudTitle)
+
+    const cloud = event.target.closest('.cloud');
+
+    if (cloud && main.contains(cloud)) {
+        navigate(cloud);
     }
-})
+
+});
 
 cloudEditMenuButton.addEventListener('click', event => {
 
-    let cloudName = cloudEditMenuInputField.value;
-    let editCloud = document.getElementById(targetCloud.id);
+    let cloudName = cloudEditMenuInputField.value.trim();
 
+    if (cloudName !== "" && targetCloud) {
 
-    if (cloudName != "") {
-        editCloud.innerHTML =
-            `<div class="edit-button">&#9999;</div>
-            <h3 id=cloud-title>${cloudName}</h3>`;
-        console.log(`Cloud Edited!, id: ${editCloud.id}`)
+        const clouds = getClouds();
+
+        const cloud = clouds.find(c => c.id === targetCloud.id);
+
+        if (cloud) {
+            cloud.title = cloudName;
+            saveClouds(clouds);
+        }
+
+        renderClouds();
 
         cloudEditMenu.classList.add('hidden');
         cloudEditMenuInputField.value = "";
+        targetCloud = null;
     }
 
-    else {
-        console.log("This only comes when input is nothing.");
-    }
-})
+});
 
 closeEditCreateMenu.addEventListener('click', event => {
     cloudEditMenu.classList.add('hidden');
-    cloudEditMenuInputField = '';
-})
+    cloudEditMenuInputField.value = "";
+    targetCloud = null;
+});
+
+function navigate(cloud) {
+    setActiveCloud(cloud.id);
+    window.location.href = "canvas.html";
+}
+
+function renderClouds() {
+    const clouds = getClouds();
+
+    main.innerHTML = "";
+
+    clouds.forEach(cloud => {
+        const newCloud = document.createElement('div');
+
+        newCloud.id = cloud.id;
+        newCloud.classList.add('cloud');
+
+        newCloud.innerHTML = `
+            <div class="edit-button">&#9999;</div>
+            <h3>${cloud.title}</h3>
+        `;
+
+        main.appendChild(newCloud);
+    });
+}
+
+renderClouds();
