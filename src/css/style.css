@@ -36,6 +36,7 @@ button {
   position: fixed;
   top: 20px;
   right: 20px;
+  cursor: pointer;
 }
 
 .circle {
@@ -56,29 +57,6 @@ button {
   padding: 16px;
   width: 100px;
   height: 100px;
-}
-
-#circle-2 {
-  top: 130px;
-  right: 50px;
-  width: 30px;
-  height: 30px;
-  padding: 8px;
-}
-
-.close-symbol {
-  background: transparent;
-  border: none;
-  font-size: 28px;
-  line-height: 1;
-  color: #36454F;
-  cursor: pointer;
-  padding: 4px 8px;
-  font-weight: 300;
-}
-
-.close-symbol:hover {
-  color: #36454F;
 }
 
 main {
@@ -155,7 +133,7 @@ main {
   background: white;
   color: #36454F;
   width: max-content;
-  padding: 16px;
+  padding: 8px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -168,14 +146,36 @@ main {
   z-index: 2;
 }
 
-.menu button {
+.menu .row-1 {
+  margin-bottom: 22px;
+  padding: 16px;
+  display: flex;
+  gap: 200px;
+  align-items: center;
+  border-bottom: 4px dotted #36454F;
+}
+
+.row-3 {
+  padding: 8px;
+}
+
+.close-menu {
+  all: unset;
+  font-size: 1.5rem;
+  margin-top: -4px;
+  cursor: pointer;
+}
+
+.menu-button {
+  margin: 0;
   padding: 8px;
   border: none;
   border-radius: 8px;
   margin-top: 12px;
+  cursor: pointer;
 }
 
-.menu button:hover {
+.menu-button:hover {
   background: #eae9e9;
 }
 
