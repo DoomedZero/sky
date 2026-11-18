@@ -1,14 +1,14 @@
 ## SKY
 
 ## Features Done
-
-## Features Planned
-1. Sky (Canvas)
+1. Sky Home
 2. Sun
 3. Clouds
-4. Clouds linking
-5. Clouds content- Text, URLs, Images
+
+## Features Planned
 6. Clouds Storage Architecture
+5. Clouds content- Text, URLs, Images
+7. CANVAS
 7. Night Sky
 8. Moon
 9. SKY BGM
