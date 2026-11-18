@@ -10,6 +10,12 @@ body {
   color: whitesmoke;
 }
 
+input,
+button {
+  font: inherit;
+  padding: 4px;
+}
+
 .hidden {
   display: none !important;
 }
@@ -19,7 +25,7 @@ body {
   top: 20px;
   left: 20px;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .sun {
@@ -68,6 +74,7 @@ body {
   color: #36454F;
   cursor: pointer;
   padding: 4px 8px;
+  font-weight: 300;
 }
 
 .close-symbol:hover {
@@ -132,15 +139,47 @@ main {
   height: 30px;
   background-color: #36454F;
   border-radius: 50%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   margin-left: 150px;
   margin-top: -30px;
-  display: none;
   cursor: pointer;
 }
 
-.cloud:hover .edit-button{
+.cloud:hover .edit-button {
   display: flex;
+}
+
+.menu {
+  background: white;
+  color: #36454F;
+  width: max-content;
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.menu button {
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
+.menu button:hover {
+  background: #eae9e9;
+}
+
+.menu input {
+  border: 1px solid #36454F;
+  border-radius: 8px;
 }
