@@ -1,4 +1,4 @@
-import { getActiveCloud } from "../../data.js";
+import { clouds } from "./data.js";
 
 const sun = document.getElementById('sun');
 const circle1 = document.getElementById('circle-1');
@@ -9,13 +9,7 @@ let canvasName = document.getElementById('canvas-name');
 
 let sunMenuState = 0;
 
-const activeCloud = getActiveCloud();
-
-if (activeCloud) {
-    canvasName.textContent = activeCloud.title;
-} else {
-    window.location.href = "index.html";
-}
+canvasName.textContent = clouds["title"];
 
 sun.addEventListener('click', event => {
     console.log("Sun Clicked");
