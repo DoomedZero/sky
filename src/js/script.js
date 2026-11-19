@@ -68,17 +68,26 @@ cloudCreateMenuButton.addEventListener('click', event => {
 })
 
 main.addEventListener('click', event => {
+
     if (event.target.matches('.edit-button')) {
+
         console.log("Edit Button Clicked");
+        
         cloudEditMenu.classList.remove('hidden');
         targetCloud = event.target.parentElement;
         cloudEditMenuTitle.textContent =  `Edit ${targetCloud.querySelector('h3').textContent}`
     }
-    if (event.target.matches('.cloud')) {
+
+    const cloudElement = event.target.closest('.cloud');
+
+    if (cloudElement) {
+
         console.log("Cloud Clicked");
-        let cloudTitle = document.getElementById(event.target.id).querySelector('h3').textContent;
-        console.log("Here we go",cloudTitle);
-        window.location.href = "canvas.html";
+
+        const cloudID = cloudElement.id;
+        console.log("Cloud selected: ", cloudID);
+
+        window.location.href = `canvas.html?id=${cloudID}`;
     }
 })
 

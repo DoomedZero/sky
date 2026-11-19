@@ -1,13 +1,18 @@
 const sun = document.getElementById('sun');
 const circle1 = document.getElementById('circle-1');
-
 const sunMenu = document.getElementById('sun-menu');
 
-let canvasName = document.getElementById('canvas-name');
+const canvasName = document.getElementById('canvas-name');
 
 let sunMenuState = 0;
 
-canvasName.textContent = "test";
+const params = new URLSearchParams(
+    window.location.search
+);
+
+const cloudId = params.get('id');
+console.log("Received cloud ID:", cloudId);
+canvasName.textContent = cloudId;
 
 sun.addEventListener('click', event => {
     console.log("Sun Clicked");
