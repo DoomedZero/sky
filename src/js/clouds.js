@@ -16,8 +16,6 @@ export function createCloud(name) {
 
     clouds.push(newCloud);
 
-    console.table(clouds);
-
     return newCloud;
 }
 
@@ -30,4 +28,14 @@ export function renameCloud(id, newName) {
     cloud.name = newName;
 
     return cloud;
+}
+
+export function deleteCloud(id) {
+
+    const cloudIndex = clouds.findIndex(c => c.id === id);
+
+    if(cloudIndex === -1) return;
+
+    return clouds.splice(cloudIndex, 1)[0];
+
 }

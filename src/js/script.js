@@ -1,4 +1,4 @@
-import { getClouds, createCloud, renameCloud } from "./clouds.js";
+import { getClouds, createCloud, renameCloud, deleteCloud } from "./clouds.js";
 
 const sun = document.getElementById('sun');
 const sunMenu = document.getElementById('sun-menu');
@@ -15,6 +15,7 @@ const cloudEditMenu = document.getElementById('cloud-edit-menu');
 const cloudEditMenuInputField = document.getElementById('cloud-edit-name-input');
 const cloudEditMenuButton = document.getElementById('cloud-edit-menu-button');
 const cloudEditMenuTitle = document.getElementById('edit-cloud-message');
+const cloudDeleteButton = document.getElementById('cloud-delete-button');
 const closeCloudEditMenu = document.getElementById('close-edit-menu');
 
 let sunMenuState = 0;
@@ -59,7 +60,8 @@ cloudCreateMenuButton.addEventListener('click', event => {
 
         renderCloud(newCloud);
 
-        console.log("New cloud crated", newCloud);
+        console.log("Cloud created: ", newCloud);
+        console.log("Clouds: ", getClouds())
 
         cloudCreateMenu.classList.add('hidden');
         cloudCreateMenuInputField.value = "";
@@ -79,9 +81,9 @@ main.addEventListener('click', event => {
 
         console.log("Edit Button Clicked");
 
-        const cloud = clouds.find( c => c.id === cloudId );
+        const cloud = clouds.find(c => c.id === cloudId);
 
-        targetcloudId = cloudId ;
+        targetcloudId = cloudId;
 
         cloudEditMenu.classList.remove('hidden');
 
@@ -93,7 +95,7 @@ main.addEventListener('click', event => {
 
     window.location.href = `canvas.html?id=${cloudId}`;
 
-})
+});
 
 cloudEditMenuButton.addEventListener('click', event => {
 
@@ -101,7 +103,7 @@ cloudEditMenuButton.addEventListener('click', event => {
 
     if (cloudName !== "") {
 
-        const cloud =  renameCloud(targetcloudId, cloudName);
+        const cloud = renameCloud(targetcloudId, cloudName);
 
         if (!cloud) return;
 
@@ -111,21 +113,41 @@ cloudEditMenuButton.addEventListener('click', event => {
 
         cloudElement.querySelector('h3').textContent = cloud.name;
 
-        console.log("Cloud updated: ", cloud);
- 
+        console.log("Cloud edited: ", cloud);
+        console.log("Clouds: ", getClouds());
+
         cloudEditMenu.classList.add('hidden');
         cloudEditMenuInputField.value = "";
 
     }
 
-})
+});
+
+cloudDeleteButton.addEventListener('click', event => {
+
+    const deletedCloud = deleteCloud(targetcloudId);
+
+    if (!deletedCloud) return;
+
+    const cloudElement = main.querySelector(
+        `[data-cloud-id = "${targetcloudId}"]`
+    );
+
+    cloudElement.remove();
+
+    console.log("Cloud deleted: ", deletedCloud)
+    console.log("Clouds: ", getClouds())
+
+    cloudEditMenu.classList.add('hidden');
+
+});
 
 closeCloudEditMenu.addEventListener('click', event => {
 
     cloudEditMenu.classList.add('hidden');
     cloudEditMenuInputField.value = '';
 
-})
+});
 
 function renderCloud(cloud) {
 
