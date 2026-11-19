@@ -1,8 +1,4 @@
 
-
-
-
-
 main {
   margin-top: 150px;
   padding: 16px;
@@ -14,4 +10,20 @@ main {
     color: #36454F;
     background-color: aliceblue;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.side-menu-item {
+  height: 40px;
+  width: 40px;
+  background-color: darkgray;
+  border-radius: 8px;
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
