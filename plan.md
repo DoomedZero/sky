@@ -5,10 +5,10 @@
 2. Sun
 3. Clouds
 4. Clouds Storage Architecture
+5. Persistent storage
 
 
 ## Features Planned
-5. Persistent storage
 6. Clouds meta data
 7. CANVAS
 8. Cloud space data linked to clouds meta data.
@@ -22,7 +22,7 @@
 
 ## Cloud architecture: 
 
-clouds : {
+clouds : [
     {
         id: 
         name: 
@@ -39,4 +39,4 @@ clouds : {
         ....
     },
     ...
-}
+]
