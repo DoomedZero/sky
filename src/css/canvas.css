@@ -1,29 +1,34 @@
-
 main {
-  margin-top: 150px;
+  height: 100vh;
+  width: 100vw;
   padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .side-menu {
-    width: 80px;
-    height: 700px;
-    color: #36454F;
-    background-color: aliceblue;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  left: 20px;
+  top: 150px;
+  width: 80px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: aliceblue;
+  border-radius: 8px;
 }
 
 .side-menu-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
   height: 40px;
   width: 40px;
   background-color: darkgray;
   border-radius: 8px;
   color: aliceblue;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
 }
