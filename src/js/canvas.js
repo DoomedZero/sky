@@ -3,6 +3,9 @@ import { getClouds } from "./clouds.js";
 const sun = document.getElementById('sun');
 const circle1 = document.getElementById('circle-1');
 const sunMenu = document.getElementById('sun-menu');
+const main = document.getElementById('main');
+
+const createText = document.getElementById('create-text');
 
 const canvasName = document.getElementById('canvas-name');
 
@@ -31,4 +34,14 @@ sun.addEventListener('click', event => {
 circle1.addEventListener('click', event => {
     console.log("Circle 1: Home clicked");
     window.location.href = "index.html";
+})
+
+createText.addEventListener('click', event => {
+
+    const canvasText = document.createElement('div');
+    canvasText.classList.add('canvas-text');
+    canvasText.setAttribute("contenteditable", "true");
+    canvasText.textContent = "Click Me!";
+
+    main.appendChild(canvasText);
 })
