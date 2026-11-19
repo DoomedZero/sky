@@ -17,7 +17,7 @@ const closeCloudEditMenu = document.getElementById('close-edit-menu');
 
 let sunMenuState = 0;
 let clouds = [];
-let targetCloud = null;
+let targetcloudId = null;
 
 sun.addEventListener('click', event => {
 
@@ -25,7 +25,7 @@ sun.addEventListener('click', event => {
         sunMenu.classList.remove('hidden');
         sunMenuState = 1;
     }
-    
+
     else {
         sunMenu.classList.add('hidden');
         sunMenuState = 0;
@@ -61,6 +61,8 @@ cloudCreateMenuButton.addEventListener('click', event => {
 
         clouds.push(newCloud);
 
+        console.table(clouds);
+
         renderCloud(newCloud);
 
         console.log("New cloud crated", newCloud);
@@ -73,44 +75,52 @@ cloudCreateMenuButton.addEventListener('click', event => {
 
 main.addEventListener('click', event => {
 
+    const cloudElement = event.target.closest('.cloud');
+
+    if (!cloudElement) return;
+
+    const cloudId = cloudElement.dataset.cloudId;
+
     if (event.target.matches('.edit-button')) {
 
         console.log("Edit Button Clicked");
 
+        const cloud = clouds.find( c => c.id === cloudId );
+
+        targetcloudId = cloudId ;
+
         cloudEditMenu.classList.remove('hidden');
-        targetCloud = event.target.parentElement;
-        cloudEditMenuTitle.textContent =  `Edit ${targetCloud.querySelector('h3').textContent}`;
+
+        cloudEditMenuTitle.textContent = `Edit ${cloud.name}`;
+
+        return;
 
     }
 
-    const cloudElement = event.target.closest('.cloud');
-
-    if (cloudElement) {
-
-        console.log("Cloud Clicked");
-
-        const cloudID = cloudElement.id;
-        console.log("Cloud selected: ", cloudID);
-
-        window.location.href = `canvas.html?id=${cloudID}`;
-
-    }
+    window.location.href = `canvas.html?id=${cloudId}`;
 
 })
 
 cloudEditMenuButton.addEventListener('click', event => {
 
     let cloudName = cloudEditMenuInputField.value.trim();
-    let editCloud = document.getElementById(targetCloud.id);
 
+    if (cloudName !== "") {
 
-    if (cloudName != "") {
+        const cloud = clouds.find( c => c.id = targetcloudId );
 
-        editCloud.innerHTML =
-            `<div class="edit-button">&#9999;</div>
-            <h3 id=cloud-title>${cloudName}</h3>`;
-        console.log(`Cloud Edited!, id: ${editCloud.id}`)
+        if (!cloud) return;
 
+        cloud.name = cloudName;
+
+        const cloudElement = main.querySelector(
+            `[data-cloud-id = "${targetcloudId}"]`
+        );
+
+        cloudElement.querySelector('h3').textContent = cloud.name;
+
+        console.log("Cloud updated: ", cloud);
+ 
         cloudEditMenu.classList.add('hidden');
         cloudEditMenuInputField.value = "";
 
@@ -130,3 +140,24 @@ closeCloudEditMenu.addEventListener('click', event => {
     cloudEditMenuInputField.value = '';
 
 })
+
+function renderCloud(cloud) {
+
+    const cloudElement = document.createElement('div');
+    cloudElement.classList.add('cloud');
+
+    cloudElement.dataset.cloudId = cloud.id;
+
+    const editButton = document.createElement('div');
+    editButton.classList.add('edit-button');
+    editButton.textContent = 'E';
+
+    const cloudTitle = document.createElement('h3');
+    cloudTitle.classList.add('cloud-title');
+    cloudTitle.textContent = cloud.name
+
+    cloudElement.appendChild(editButton);
+    cloudElement.appendChild(cloudTitle);
+
+    main.appendChild(cloudElement);
+}
