@@ -14,6 +14,8 @@
 7. Store canvas activity in meta-data
 8. Cloud space data linked to clouds meta data.
 
+9. Keyboard support
+
 9. Night Sky
 10. Moon
 11. SKY BGM
