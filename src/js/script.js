@@ -30,16 +30,21 @@ sun.addEventListener('click', event => {
         sunMenu.classList.add('hidden');
         sunMenuState = 0;
     }
+
 })
 
 circle1.addEventListener('click', event => {
+
     console.log("Circle 1: Create Clouds clicked");
     cloudCreateMenu.classList.remove('hidden');
+
 })
 
 closeCloudCreateMenu.addEventListener('click', event => {
+
     cloudCreateMenu.classList.add('hidden');
     cloudCreateMenuInputField.value = "";
+
 })
 
 cloudCreateMenuButton.addEventListener('click', event => {
@@ -74,7 +79,8 @@ main.addEventListener('click', event => {
 
         cloudEditMenu.classList.remove('hidden');
         targetCloud = event.target.parentElement;
-        cloudEditMenuTitle.textContent =  `Edit ${targetCloud.querySelector('h3').textContent}`
+        cloudEditMenuTitle.textContent =  `Edit ${targetCloud.querySelector('h3').textContent}`;
+
     }
 
     const cloudElement = event.target.closest('.cloud');
@@ -87,16 +93,19 @@ main.addEventListener('click', event => {
         console.log("Cloud selected: ", cloudID);
 
         window.location.href = `canvas.html?id=${cloudID}`;
+
     }
+
 })
 
 cloudEditMenuButton.addEventListener('click', event => {
 
-    let cloudName = cloudEditMenuInputField.value;
+    let cloudName = cloudEditMenuInputField.value.trim();
     let editCloud = document.getElementById(targetCloud.id);
 
 
     if (cloudName != "") {
+
         editCloud.innerHTML =
             `<div class="edit-button">&#9999;</div>
             <h3 id=cloud-title>${cloudName}</h3>`;
@@ -104,14 +113,20 @@ cloudEditMenuButton.addEventListener('click', event => {
 
         cloudEditMenu.classList.add('hidden');
         cloudEditMenuInputField.value = "";
+
     }
 
     else {
+
         console.log("This only comes when input is nothing.");
+
     }
+
 })
 
 closeCloudEditMenu.addEventListener('click', event => {
+
     cloudEditMenu.classList.add('hidden');
     cloudEditMenuInputField.value = '';
+
 })
