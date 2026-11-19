@@ -13,7 +13,7 @@ const cloudEditMenu = document.getElementById('cloud-edit-menu');
 const cloudEditMenuInputField = document.getElementById('cloud-edit-name-input');
 const cloudEditMenuButton = document.getElementById('cloud-edit-menu-button');
 const cloudEditMenuTitle = document.getElementById('edit-cloud-message');
-const closeEditCreateMenu = document.getElementById('close-edit-menu');
+const closeCloudEditMenu = document.getElementById('close-edit-menu');
 
 let sunMenuState = 0;
 let cloudCount = 0;
@@ -103,7 +103,7 @@ cloudEditMenuButton.addEventListener('click', event => {
     }
 })
 
-closeEditCreateMenu.addEventListener('click', event => {
+closeCloudEditMenu.addEventListener('click', event => {
     cloudEditMenu.classList.add('hidden');
-    cloudEditMenuInputField = '';
+    cloudEditMenuInputField.value = '';
 })
