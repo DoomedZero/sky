@@ -16,7 +16,7 @@ const cloudEditMenuTitle = document.getElementById('edit-cloud-message');
 const closeCloudEditMenu = document.getElementById('close-edit-menu');
 
 let sunMenuState = 0;
-let cloudCount = 0;
+let clouds = [];
 let targetCloud = null;
 
 sun.addEventListener('click', event => {
@@ -44,25 +44,24 @@ closeCloudCreateMenu.addEventListener('click', event => {
 
 cloudCreateMenuButton.addEventListener('click', event => {
 
-    let cloudName = cloudCreateMenuInputField.value;
+    let cloudName = cloudCreateMenuInputField.value.trim();
 
     if (cloudName != "") {
-        const newCloud = document.createElement('div');
-        cloudCount = cloudCount + 1;
-        newCloud.id = `cloud${cloudCount}`
-        newCloud.classList.add('cloud');
-        newCloud.innerHTML =
-            `<div class="edit-button">&#9999;</div>
-            <h3 class=cloud-title>${cloudName}</h3>`;
-        main.appendChild(newCloud);
-        console.log(`Cloud created!, id: ${newCloud.id}`)
+
+        const newCloud = {
+            id: crypto.randomUUID(),
+            name: cloudName,
+            createdAt: Date.now()
+        };
+
+        clouds.push(newCloud);
+
+        renderCloud(newCloud);
+
+        console.log("New cloud crated", newCloud);
 
         cloudCreateMenu.classList.add('hidden');
         cloudCreateMenuInputField.value = "";
-    }
-
-    else {
-        console.log("This only comes when input is nothing.");
     }
 
 })
@@ -72,7 +71,7 @@ main.addEventListener('click', event => {
     if (event.target.matches('.edit-button')) {
 
         console.log("Edit Button Clicked");
-        
+
         cloudEditMenu.classList.remove('hidden');
         targetCloud = event.target.parentElement;
         cloudEditMenuTitle.textContent =  `Edit ${targetCloud.querySelector('h3').textContent}`
