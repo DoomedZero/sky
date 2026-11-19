@@ -53,7 +53,7 @@ cloudCreateMenuButton.addEventListener('click', event => {
         newCloud.classList.add('cloud');
         newCloud.innerHTML =
             `<div class="edit-button">&#9999;</div>
-            <h3 id=cloud-title>${cloudName}</h3>`;
+            <h3 class=cloud-title>${cloudName}</h3>`;
         main.appendChild(newCloud);
         console.log(`Cloud created!, id: ${newCloud.id}`)
 
