@@ -1,3 +1,5 @@
+import { getClouds, createCloud, renameCloud } from "./clouds.js";
+
 const sun = document.getElementById('sun');
 const sunMenu = document.getElementById('sun-menu');
 const circle1 = document.getElementById('circle-1');
@@ -16,8 +18,8 @@ const cloudEditMenuTitle = document.getElementById('edit-cloud-message');
 const closeCloudEditMenu = document.getElementById('close-edit-menu');
 
 let sunMenuState = 0;
-let clouds = [];
 let targetcloudId = null;
+let clouds = getClouds();
 
 sun.addEventListener('click', event => {
 
@@ -53,15 +55,7 @@ cloudCreateMenuButton.addEventListener('click', event => {
 
     if (cloudName != "") {
 
-        const newCloud = {
-            id: crypto.randomUUID(),
-            name: cloudName,
-            createdAt: Date.now()
-        };
-
-        clouds.push(newCloud);
-
-        console.table(clouds);
+        const newCloud = createCloud(cloudName);
 
         renderCloud(newCloud);
 
@@ -107,11 +101,9 @@ cloudEditMenuButton.addEventListener('click', event => {
 
     if (cloudName !== "") {
 
-        const cloud = clouds.find( c => c.id = targetcloudId );
+        const cloud =  renameCloud(targetcloudId, cloudName);
 
         if (!cloud) return;
-
-        cloud.name = cloudName;
 
         const cloudElement = main.querySelector(
             `[data-cloud-id = "${targetcloudId}"]`
@@ -123,12 +115,6 @@ cloudEditMenuButton.addEventListener('click', event => {
  
         cloudEditMenu.classList.add('hidden');
         cloudEditMenuInputField.value = "";
-
-    }
-
-    else {
-
-        console.log("This only comes when input is nothing.");
 
     }
 
