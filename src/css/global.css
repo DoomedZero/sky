@@ -23,16 +23,19 @@ body {
 }
 
 .sun {
-  width: 100px;
-  height: 100px;
-  border-radius: 100%;
-  background: sandybrown;
   position: fixed;
   top: 20px;
   right: 20px;
   z-index: 1;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background: sandybrown;
 }
 .circle {
+  position: fixed;
+  z-index: 1;
   background: whitesmoke;
   color: #36454F;
   border-radius: 50%;
@@ -40,8 +43,6 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  position: fixed;
-  z-index: 1;
 }
 
 #circle-1 {
