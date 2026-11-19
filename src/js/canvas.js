@@ -1,3 +1,5 @@
+import { getClouds } from "./clouds.js";
+
 const sun = document.getElementById('sun');
 const circle1 = document.getElementById('circle-1');
 const sunMenu = document.getElementById('sun-menu');
@@ -12,7 +14,7 @@ const params = new URLSearchParams(
 
 const cloudId = params.get('id');
 console.log("Received cloud ID:", cloudId);
-canvasName.textContent = cloudId;
+canvasName.textContent = getClouds().find(c => c.id === cloudId).name;
 
 sun.addEventListener('click', event => {
     console.log("Sun Clicked");

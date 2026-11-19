@@ -169,3 +169,7 @@ function renderCloud(cloud) {
 
     main.appendChild(cloudElement);
 }
+
+getClouds().forEach(cloud => {
+    renderCloud(cloud);
+});

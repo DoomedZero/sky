@@ -1,4 +1,10 @@
-let clouds = [];
+const savedClouds = localStorage.getItem("sky-clouds")
+
+let clouds = savedClouds ? JSON.parse(savedClouds) : [];
+
+function saveClouds() {
+    localStorage.setItem('sky-clouds', JSON.stringify(clouds));
+}
 
 export function getClouds() {
 
@@ -16,6 +22,8 @@ export function createCloud(name) {
 
     clouds.push(newCloud);
 
+    saveClouds();
+
     return newCloud;
 }
 
@@ -27,6 +35,8 @@ export function renameCloud(id, newName) {
 
     cloud.name = newName;
 
+    saveClouds();
+
     return cloud;
 }
 
@@ -36,6 +46,10 @@ export function deleteCloud(id) {
 
     if(cloudIndex === -1) return;
 
-    return clouds.splice(cloudIndex, 1)[0];
+    const deletedCloud = clouds.splice(cloudIndex, 1)[0];
+
+    saveClouds();
+
+    return deletedCloud;
 
 }
