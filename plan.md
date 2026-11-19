@@ -9,9 +9,11 @@
 
 
 ## Features Planned
-6. Clouds meta data
-7. CANVAS
+6. CANVAS
+6.1. text
+7. Store canvas activity in meta-data
 8. Cloud space data linked to clouds meta data.
+
 9. Night Sky
 10. Moon
 11. SKY BGM
