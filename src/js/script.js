@@ -21,6 +21,7 @@ const closeCloudEditMenu = document.getElementById('close-edit-menu');
 let targetcloudId = null;
 let clouds = getClouds();
 let isSunOpen = false;
+let canOpenSun = true;
 let isCreateOpen = false;
 let isEditOpen = false;
 
@@ -50,6 +51,7 @@ circle1.addEventListener('click', event => {
 
     toggleSunMenu();
     toggleCreateMenu();
+    canOpenSun = false;
 
 });
 
@@ -60,8 +62,8 @@ closeCloudCreateMenu.addEventListener('click', event => {
     sunMenu.classList.remove('sun-open');
     main.classList.remove('shrink-main');
 
-    toggleSunMenu();
     toggleCreateMenu();
+    canOpenSun = true;
 
 });
 
@@ -85,6 +87,7 @@ cloudCreateMenuButton.addEventListener('click', event => {
 
         toggleSunMenu();
         toggleCreateMenu();
+        canOpenSun = true;
     }
 
 });
@@ -211,12 +214,14 @@ document.addEventListener('keydown', (event) => {
         return;
     }
 
-    if (event.key.toLowerCase() === 's' && !event.ctrlKey && !event.metaKey && !event.altKey) {
+    if (event.key.toLowerCase() === 's'
+        && !event.ctrlKey
+        && !event.metaKey
+        && !event.altKey
+        && canOpenSun) {
 
         sunMenu.classList.toggle('sun-open');
         toggleSunMenu();
-        console.log(isSunOpen);
-        return;
 
     }
 
@@ -226,15 +231,16 @@ document.addEventListener('keydown', (event) => {
             && !event.ctrlKey
             && !event.metaKey
             && !event.altKey) {
+            
             sunMenu.classList.remove('sun-open');
             cloudCreateMenu.classList.add('open');
             main.classList.add('shrink-main');
 
             toggleSunMenu();
             toggleCreateMenu();
+            canOpenSun = false;
         }
 
-        return;
     }
 
     if (isCreateOpen) {
@@ -250,13 +256,14 @@ document.addEventListener('keydown', (event) => {
             main.classList.remove('shrink-main');
 
             toggleCreateMenu();
+            canOpenSun = true;
 
         }
+
 
     }
 
     if (isCreateOpen) {
-
         if (event.key.toLocaleLowerCase() === 'i'
             && !event.ctrlKey
             && !event.metaKey
