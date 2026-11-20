@@ -36,6 +36,7 @@ circle1.addEventListener('click', event => {
     sunMenu.classList.remove('sun-open');
     sunIndicator.textContent = "S";
     cloudCreateMenu.classList.add('open');
+    main.classList.add('shrink-main');
     cloudCreateMenuInputField.focus();
 
 });
@@ -45,6 +46,7 @@ closeCloudCreateMenu.addEventListener('click', event => {
     cloudCreateMenu.classList.remove('open');
     cloudCreateMenuInputField.value = "";
     sunMenu.classList.remove('sun-open');
+    main.classList.remove('shrink-main');
     sunIndicator.textContent = "S";
 
 });
@@ -65,6 +67,7 @@ cloudCreateMenuButton.addEventListener('click', event => {
         cloudCreateMenu.classList.remove('open');
         cloudCreateMenuInputField.value = "";
         sunMenu.classList.remove('sun-open');
+        main.classList.remove('shrink-main');
         sunIndicator.textContent = "S";
     }
 

@@ -51,7 +51,7 @@ body {
 }
 
 #sun-menu.sun-open {
-  transform: translate(-80%,80%);
+  transform: translate(-80%, 80%);
 }
 
 .circle {
@@ -70,6 +70,10 @@ body {
   height: 100px;
 }
 
+#circle-1 h3 {
+  user-select: none;
+}
+
 @view-transition {
-  navigation: auto ;
+  navigation: auto;
 }
