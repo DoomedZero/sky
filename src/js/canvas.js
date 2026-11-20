@@ -2,7 +2,6 @@ import { getClouds } from "./clouds.js";
 
 const sun = document.getElementById('sun');
 const circle1 = document.getElementById('circle-1');
-const sunIndicator = document.getElementById('sun-indicator');
 const sunMenu = document.getElementById('sun-menu');
 
 const main = document.getElementById('main');
@@ -12,25 +11,30 @@ const createText = document.getElementById('create-text');
 const canvasName = document.getElementById('canvas-name');
 
 const params = new URLSearchParams(
-    window.location.search
+  window.location.search
 );
 
 const cloudId = params.get('id');
 console.log("Received cloud ID:", cloudId);
 canvasName.textContent = getClouds().find(c => c.id === cloudId).name;
 
-sunIndicator.textContent = "S";
+let isSunOpen = false;
+
+function toggleSunMenu() {
+  isSunOpen = !isSunOpen;
+}
 
 sun.addEventListener('click', event => {
 
-    sunMenu.classList.toggle('sun-open');
-    sunIndicator.textContent = sunIndicator.textContent === "S" ? "X" : "S";
+  sunMenu.classList.toggle('sun-open');
+  toggleSunMenu();
 
 });
 
 circle1.addEventListener('click', event => {
-  
+
   window.location.href = "index.html";
+  toggleSunMenu();
 
 });
 
@@ -108,5 +112,35 @@ createText.addEventListener("click", () => {
     dragBox.classList.remove("is-dragging");
     dragBox.releasePointerCapture(e.pointerId);
   });
-  
+
+});
+
+document.addEventListener('keydown', (event) => {
+
+  const tag = event.target.tagName;
+  if (tag === 'INPUT' || tag === 'TEXTAREA' || event.target.isContentEditable) {
+    return;
+  }
+
+  if (event.key.toLowerCase() === 's'
+    && !event.ctrlKey
+    && !event.metaKey
+    && !event.altKey) {
+    sunMenu.classList.toggle('sun-open');
+    toggleSunMenu();
+
+  }
+
+  if (isSunOpen) {
+    if (event.key.toLocaleLowerCase() === 'h'
+      && !event.ctrlKey
+      && !event.metaKey
+      && !event.altKey) {
+
+      window.location.href = "index.html";
+      toggleSunMenu();
+
+    }
+  }
+
 });

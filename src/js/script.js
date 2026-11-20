@@ -2,7 +2,6 @@ import { getClouds, createCloud, renameCloud, deleteCloud } from "./clouds.js";
 
 const sun = document.getElementById('sun');
 const sunMenu = document.getElementById('sun-menu');
-const sunIndicator = document.getElementById('sun-indicator');
 const circle1 = document.getElementById('circle-1');
 
 const main = document.getElementById('main');
@@ -21,23 +20,36 @@ const closeCloudEditMenu = document.getElementById('close-edit-menu');
 
 let targetcloudId = null;
 let clouds = getClouds();
+let isSunOpen = false;
+let isCreateOpen = false;
+let isEditOpen = false;
 
-sunIndicator.textContent = "S";
+function toggleSunMenu() {
+    isSunOpen = !isSunOpen;
+}
+
+function toggleCreateMenu() {
+    isCreateOpen = !isCreateOpen;
+}
+
+function toggleEditMenu() {
+    isCreateOpen = !isCreateOpen;
+}
 
 sun.addEventListener('click', event => {
 
     sunMenu.classList.toggle('sun-open');
-    sunIndicator.textContent = sunIndicator.textContent === "S" ? "X" : "S";
 
 });
 
 circle1.addEventListener('click', event => {
 
     sunMenu.classList.remove('sun-open');
-    sunIndicator.textContent = "S";
     cloudCreateMenu.classList.add('open');
     main.classList.add('shrink-main');
-    cloudCreateMenuInputField.focus();
+
+    toggleSunMenu();
+    toggleCreateMenu();
 
 });
 
@@ -47,7 +59,9 @@ closeCloudCreateMenu.addEventListener('click', event => {
     cloudCreateMenuInputField.value = "";
     sunMenu.classList.remove('sun-open');
     main.classList.remove('shrink-main');
-    sunIndicator.textContent = "S";
+
+    toggleSunMenu();
+    toggleCreateMenu();
 
 });
 
@@ -68,7 +82,9 @@ cloudCreateMenuButton.addEventListener('click', event => {
         cloudCreateMenuInputField.value = "";
         sunMenu.classList.remove('sun-open');
         main.classList.remove('shrink-main');
-        sunIndicator.textContent = "S";
+
+        toggleSunMenu();
+        toggleCreateMenu();
     }
 
 });
@@ -183,4 +199,73 @@ function renderCloud(cloud) {
 
 getClouds().forEach(cloud => {
     renderCloud(cloud);
+});
+
+// KEYBOARD YAY!!!
+
+document.addEventListener('keydown', (event) => {
+
+    // Ignore if user is typing in an input, textarea, or editable field
+    const tag = event.target.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || event.target.isContentEditable) {
+        return;
+    }
+
+    if (event.key.toLowerCase() === 's' && !event.ctrlKey && !event.metaKey && !event.altKey) {
+
+        sunMenu.classList.toggle('sun-open');
+        toggleSunMenu();
+        console.log(isSunOpen);
+        return;
+
+    }
+
+    if (isSunOpen) {
+
+        if (event.key.toLocaleLowerCase() === 'c'
+            && !event.ctrlKey
+            && !event.metaKey
+            && !event.altKey) {
+            sunMenu.classList.remove('sun-open');
+            cloudCreateMenu.classList.add('open');
+            main.classList.add('shrink-main');
+
+            toggleSunMenu();
+            toggleCreateMenu();
+        }
+
+        return;
+    }
+
+    if (isCreateOpen) {
+
+        if (event.key.toLocaleLowerCase() === 'x'
+            && !event.ctrlKey
+            && !event.metaKey
+            && !event.altKey) {
+
+            cloudCreateMenu.classList.remove('open');
+            cloudCreateMenuInputField.value = "";
+            sunMenu.classList.remove('sun-open');
+            main.classList.remove('shrink-main');
+
+            toggleCreateMenu();
+
+        }
+
+    }
+
+    if (isCreateOpen) {
+
+        if (event.key.toLocaleLowerCase() === 'i'
+            && !event.ctrlKey
+            && !event.metaKey
+            && !event.altKey) {
+
+            cloudCreateMenuInputField.focus();
+
+        }
+
+    }
+
 });
