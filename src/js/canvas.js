@@ -23,23 +23,16 @@ canvasName.textContent = getClouds().find(c => c.id === cloudId).name;
 sunIndicator.textContent = "S";
 
 sun.addEventListener('click', event => {
-    console.log("Sun Clicked");
-    if (sunMenuState == 0) {
-        sunIndicator.textContent = "X";
-        sunMenu.classList.remove('hidden');
-        sunMenuState = 1;
-    }
-    else {
-        sunMenu.classList.add('hidden');
-        sunMenuState = 0;
-        sunIndicator.textContent = "S";
-    }
+
+    sunMenu.classList.toggle('sun-open');
+    sunIndicator.textContent = sunIndicator.textContent === "S" ? "X" : "S";
+
 });
 
 circle1.addEventListener('click', event => {
-    console.log("Circle 1: Home clicked");
-    sunIndicator.textContent = "S";
+  
     window.location.href = "index.html";
+
 });
 
 createText.addEventListener("click", () => {
