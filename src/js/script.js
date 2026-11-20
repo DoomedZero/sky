@@ -90,6 +90,7 @@ main.addEventListener('click', event => {
         targetcloudId = cloudId;
 
         cloudEditMenu.classList.add('open');
+        main.classList.add('shrink-main');
 
         cloudEditMenuTitle.textContent = `Edit ${cloud.name}`;
 
@@ -124,6 +125,7 @@ cloudEditMenuButton.addEventListener('click', event => {
 
         cloudEditMenu.classList.remove('open');
         cloudEditMenuInputField.value = "";
+        main.classList.remove('shrink-main');
 
     }
 
@@ -145,6 +147,8 @@ cloudDeleteButton.addEventListener('click', event => {
     console.log("Clouds: ", getClouds())
 
     cloudEditMenu.classList.remove('open');
+    cloudEditMenuInputField.value = '';
+    main.classList.remove('shrink-main');
 
 });
 
@@ -152,6 +156,7 @@ closeCloudEditMenu.addEventListener('click', event => {
 
     cloudEditMenu.classList.remove('open');
     cloudEditMenuInputField.value = '';
+    main.classList.remove('shrink-main');
 
 });
 
