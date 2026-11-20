@@ -40,6 +40,7 @@ function toggleEditMenu() {
 sun.addEventListener('click', event => {
 
     sunMenu.classList.toggle('sun-open');
+    toggleSunMenu();
 
 });
 
