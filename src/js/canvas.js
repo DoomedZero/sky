@@ -4,13 +4,12 @@ const sun = document.getElementById('sun');
 const circle1 = document.getElementById('circle-1');
 const sunIndicator = document.getElementById('sun-indicator');
 const sunMenu = document.getElementById('sun-menu');
+
 const main = document.getElementById('main');
 
 const createText = document.getElementById('create-text');
 
 const canvasName = document.getElementById('canvas-name');
-
-let sunMenuState = 0;
 
 const params = new URLSearchParams(
     window.location.search
@@ -31,7 +30,7 @@ sun.addEventListener('click', event => {
 
 circle1.addEventListener('click', event => {
   
-    window.location.href = "index.html";
+  window.location.href = "index.html";
 
 });
 

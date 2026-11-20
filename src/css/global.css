@@ -69,3 +69,7 @@ body {
   width: 100px;
   height: 100px;
 }
+
+@view-transition {
+  navigation: auto ;
+}
