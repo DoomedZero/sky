@@ -165,7 +165,7 @@ function renderCloud(cloud) {
 
     const cloudTitle = document.createElement('h3');
     cloudTitle.classList.add('cloud-title');
-    cloudTitle.textContent = cloud.name
+    cloudTitle.textContent = cloud.name;
 
     cloudElement.appendChild(editButton);
     cloudElement.appendChild(cloudTitle);
