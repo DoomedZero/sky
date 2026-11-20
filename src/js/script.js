@@ -2,6 +2,7 @@ import { getClouds, createCloud, renameCloud, deleteCloud } from "./clouds.js";
 
 const sun = document.getElementById('sun');
 const sunMenu = document.getElementById('sun-menu');
+const sunIndicator = document.getElementById('sun-indicator');
 const circle1 = document.getElementById('circle-1');
 
 const main = document.getElementById('main');
@@ -22,9 +23,12 @@ let sunMenuState = 0;
 let targetcloudId = null;
 let clouds = getClouds();
 
+sunIndicator.textContent = "S";
+
 sun.addEventListener('click', event => {
 
     if (sunMenuState == 0) {
+        sunIndicator.textContent = "X";
         sunMenu.classList.remove('hidden');
         sunMenuState = 1;
     }
@@ -32,6 +36,7 @@ sun.addEventListener('click', event => {
     else {
         sunMenu.classList.add('hidden');
         sunMenuState = 0;
+        sunIndicator.textContent = "S";
     }
 
 })
@@ -49,6 +54,7 @@ closeCloudCreateMenu.addEventListener('click', event => {
     cloudCreateMenuInputField.value = "";
     sunMenu.classList.add('hidden');
     sunMenuState = 0;
+    sunIndicator.textContent = "S";
 
 })
 
@@ -69,6 +75,7 @@ cloudCreateMenuButton.addEventListener('click', event => {
         cloudCreateMenuInputField.value = "";
         sunMenu.classList.add('hidden');
         sunMenuState = 0;
+        sunIndicator.textContent = "S";
     }
 
 })

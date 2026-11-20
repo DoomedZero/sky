@@ -32,7 +32,15 @@ body {
   height: 100px;
   border-radius: 100%;
   background: sandybrown;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+#sun-indicator {
+  user-select: none;
+}
+
 .circle {
   position: fixed;
   z-index: 1;
