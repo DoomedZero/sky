@@ -47,6 +47,8 @@ closeCloudCreateMenu.addEventListener('click', event => {
 
     cloudCreateMenu.classList.add('hidden');
     cloudCreateMenuInputField.value = "";
+    sunMenu.classList.add('hidden');
+    sunMenuState = 0;
 
 })
 
@@ -65,6 +67,8 @@ cloudCreateMenuButton.addEventListener('click', event => {
 
         cloudCreateMenu.classList.add('hidden');
         cloudCreateMenuInputField.value = "";
+        sunMenu.classList.add('hidden');
+        sunMenuState = 0;
     }
 
 })
