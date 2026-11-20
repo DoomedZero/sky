@@ -45,6 +45,8 @@ circle1.addEventListener('click', event => {
 
     console.log("Circle 1: Create Clouds clicked");
     cloudCreateMenu.classList.remove('hidden');
+    cloudCreateMenuInputField.focus();
+
 
 })
 
@@ -99,6 +101,8 @@ main.addEventListener('click', event => {
         cloudEditMenu.classList.remove('hidden');
 
         cloudEditMenuTitle.textContent = `Edit ${cloud.name}`;
+
+        cloudEditMenuInputField.focus();
 
         return;
 
