@@ -36,104 +36,79 @@ circle1.addEventListener('click', event => {
     window.location.href = "index.html";
 });
 
-createText.addEventListener('click', event => {
+createText.addEventListener("click", () => {
 
-    const canvasText = document.createElement('div');
-    canvasText.classList.add('canvas-text');
-    canvasText.contentEditable = true;
-    canvasText.textContent = '';
+  const dragBox = document.createElement("div");
+  dragBox.classList.add("drag-box");
 
-    main.appendChild(canvasText);
+  const canvasText = document.createElement("div");
+  canvasText.classList.add("canvas-text");
+  canvasText.contentEditable = "true";
+  canvasText.textContent = "";
 
-    const position = findFreePosition(canvasText);
+  dragBox.appendChild(canvasText);
+  main.appendChild(dragBox);
 
-    canvasText.style.left = `${position.x}px`;
-    canvasText.style.top = `${position.y}px`;
+  // Focus and place the blinking cursor at the end of "Text"
+  canvasText.focus();
+  const range = document.createRange();
+  range.selectNodeContents(canvasText);
+  range.collapse(false);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
 
-    makeDraggable(canvasText);
+  // State scoped to this specific textbox
+  let isDragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
 
+  // Double-click to re-enter edit mode later
+  dragBox.addEventListener("dblclick", () => {
+    canvasText.contentEditable = "true";
     canvasText.focus();
+  });
 
+  // Disable editing when clicking outside so single-click dragging works
+  canvasText.addEventListener("blur", () => {
+    canvasText.contentEditable = "false";
+  });
+
+  dragBox.addEventListener("pointerdown", (e) => {
+    // Allow normal typing/cursor movement if actively editing
+    if (document.activeElement === canvasText) return;
+
+    canvasText.blur();
+    window.getSelection()?.removeAllRanges();
+
+    // Remove the centering transform smoothly on the first drag
+    const boxRect = dragBox.getBoundingClientRect();
+    const parentRect = main.getBoundingClientRect();
+    dragBox.style.transform = "none";
+    dragBox.style.left = `${boxRect.left - parentRect.left}px`;
+    dragBox.style.top = `${boxRect.top - parentRect.top}px`;
+
+    isDragging = true;
+    offsetX = e.clientX - boxRect.left;
+    offsetY = e.clientY - boxRect.top;
+
+    dragBox.classList.add("is-dragging");
+    dragBox.setPointerCapture(e.pointerId);
+  });
+
+  dragBox.addEventListener("pointermove", (e) => {
+    if (!isDragging) return;
+    const parentRect = main.getBoundingClientRect();
+
+    dragBox.style.left = `${e.clientX - parentRect.left - offsetX}px`;
+    dragBox.style.top = `${e.clientY - parentRect.top - offsetY}px`;
+  });
+
+  dragBox.addEventListener("pointerup", (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    dragBox.classList.remove("is-dragging");
+    dragBox.releasePointerCapture(e.pointerId);
+  });
+  
 });
-
-function findFreePosition(element) {
-    const centerX = main.clientWidth / 2 - element.offsetWidth / 2;
-    const centerY = main.clientHeight / 2 - element.offsetHeight / 2;
-
-    const existingTexts = [...main.querySelectorAll('.canvas-text')];
-
-    const step = 40;
-
-    for (let radius = 0; radius <= 20; radius++) {
-
-        for (let x = -radius; x <= radius; x++) {
-            
-            for (let y = -radius; y <= radius; y++) {
-
-                // Only check the outer edge of each search ring
-                if (Math.abs(x) !== radius && Math.abs(y) !== radius) {
-                    continue;
-                }
-
-                const left = centerX + x * step;
-                const top = centerY + y * step;
-
-                const isOccupied = existingTexts.some(text => {
-                    return !(
-                        left + element.offsetWidth + 12 < text.offsetLeft ||
-                        left > text.offsetLeft + text.offsetWidth + 12 ||
-                        top + element.offsetHeight + 12 < text.offsetTop ||
-                        top > text.offsetTop + text.offsetHeight + 12
-                    );
-                });
-
-                if (!isOccupied) {
-                    return { x: left, y: top };
-                }
-            }
-        }
-    }
-
-    return { x: centerX, y: centerY };
-};
-
-function makeDraggable(element) {
-    let startX, startY;
-    let initialLeft, initialTop;
-    let isDragging = false;
-    let activePointerId = null;
-
-    element.addEventListener('pointerdown', event => {
-        if (event.button !== 0) return;
-
-        startX = event.clientX;
-        startY = event.clientY;
-
-        initialLeft = element.offsetLeft;
-        initialTop = element.offsetTop;
-
-        activePointerId = event.pointerId;
-        isDragging = false;
-    });
-
-    document.addEventListener('pointermove', event => {
-        if (event.pointerId !== activePointerId) return;
-
-        const dx = event.clientX - startX;
-        const dy = event.clientY - startY;
-
-        if (!isDragging && Math.hypot(dx, dy) < 4) return;
-
-        isDragging = true;
-
-        element.style.left = `${initialLeft + dx}px`;
-        element.style.top = `${initialTop + dy}px`;
-    });
-
-    document.addEventListener('pointerup', event => {
-        if (event.pointerId !== activePointerId) return;
-
-        activePointerId = null;
-        isDragging = false;
-    });
-};

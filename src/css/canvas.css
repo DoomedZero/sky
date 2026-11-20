@@ -37,18 +37,31 @@ main {
   color: aliceblue;
 }
 
-.canvas-text {
+.drag-box {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   min-width: fit-content;
   min-height: 30px;
   background-color: aliceblue;
   color: #36454F;
-  outline: none;
   border-radius: 8px;
-  padding: 8px;
-  cursor: text;
+  padding: 12px;
+  cursor: grab;
+  touch-action: none;
 }
 
-.canvas-text:active {
-    cursor: grabbing;
+.drag-box.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.canvas-text {
+  outline: none;
+  cursor: text;
+  user-select: text;
+  /* Overrides parent so the blinking cursor appears */
+  -webkit-user-select: text;
 }
