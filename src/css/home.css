@@ -6,11 +6,15 @@ button {
 
 main {
   margin-top: 100px;
-  margin-right: 400px;
   padding: 80px;
   display: flex;
   gap: 50px;
   flex-wrap: wrap;
+  transition: margin-right 0.5 ease;
+}
+
+.shrink-main {
+  margin-right: 400px;
 }
 
 /* Base pill shape of the cloud */
@@ -76,7 +80,7 @@ main {
 }
 
 .menu {
-  position: absolute;
+  position: fixed;
   right: 30px;
   top: 230px;
   width: 400px;
@@ -88,6 +92,12 @@ main {
   padding: 8px;
   display: flex;
   flex-direction: column;
+  transform: translateX(150%);
+  transition: transform 0.5s ease;
+}
+
+.open {
+  transform: translateX(0);
 }
 
 .row-1 {

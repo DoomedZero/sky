@@ -19,7 +19,6 @@ const cloudEditMenuTitle = document.getElementById('edit-cloud-message');
 const cloudDeleteButton = document.getElementById('cloud-delete-button');
 const closeCloudEditMenu = document.getElementById('close-edit-menu');
 
-let sunMenuState = 0;
 let targetcloudId = null;
 let clouds = getClouds();
 
@@ -27,38 +26,28 @@ sunIndicator.textContent = "S";
 
 sun.addEventListener('click', event => {
 
-    if (sunMenuState == 0) {
-        sunIndicator.textContent = "X";
-        sunMenu.classList.remove('hidden');
-        sunMenuState = 1;
-    }
+    sunMenu.classList.toggle('sun-open');
+    sunIndicator.textContent = sunIndicator.textContent === "S" ? "X" : "S";
 
-    else {
-        sunMenu.classList.add('hidden');
-        sunMenuState = 0;
-        sunIndicator.textContent = "S";
-    }
-
-})
+});
 
 circle1.addEventListener('click', event => {
 
-    console.log("Circle 1: Create Clouds clicked");
-    cloudCreateMenu.classList.remove('hidden');
+    sunMenu.classList.remove('sun-open');
+    sunIndicator.textContent = "S";
+    cloudCreateMenu.classList.add('open');
     cloudCreateMenuInputField.focus();
 
-
-})
+});
 
 closeCloudCreateMenu.addEventListener('click', event => {
 
-    cloudCreateMenu.classList.add('hidden');
+    cloudCreateMenu.classList.remove('open');
     cloudCreateMenuInputField.value = "";
-    sunMenu.classList.add('hidden');
-    sunMenuState = 0;
+    sunMenu.classList.remove('sun-open');
     sunIndicator.textContent = "S";
 
-})
+});
 
 cloudCreateMenuButton.addEventListener('click', event => {
 
@@ -73,14 +62,13 @@ cloudCreateMenuButton.addEventListener('click', event => {
         console.log("Cloud created: ", newCloud);
         console.log("Clouds: ", getClouds())
 
-        cloudCreateMenu.classList.add('hidden');
+        cloudCreateMenu.classList.remove('open');
         cloudCreateMenuInputField.value = "";
-        sunMenu.classList.add('hidden');
-        sunMenuState = 0;
+        sunMenu.classList.remove('sun-open');
         sunIndicator.textContent = "S";
     }
 
-})
+});
 
 main.addEventListener('click', event => {
 
@@ -98,7 +86,7 @@ main.addEventListener('click', event => {
 
         targetcloudId = cloudId;
 
-        cloudEditMenu.classList.remove('hidden');
+        cloudEditMenu.classList.add('open');
 
         cloudEditMenuTitle.textContent = `Edit ${cloud.name}`;
 
@@ -131,7 +119,7 @@ cloudEditMenuButton.addEventListener('click', event => {
         console.log("Cloud edited: ", cloud);
         console.log("Clouds: ", getClouds());
 
-        cloudEditMenu.classList.add('hidden');
+        cloudEditMenu.classList.remove('open');
         cloudEditMenuInputField.value = "";
 
     }
@@ -153,13 +141,13 @@ cloudDeleteButton.addEventListener('click', event => {
     console.log("Cloud deleted: ", deletedCloud)
     console.log("Clouds: ", getClouds())
 
-    cloudEditMenu.classList.add('hidden');
+    cloudEditMenu.classList.remove('open');
 
 });
 
 closeCloudEditMenu.addEventListener('click', event => {
 
-    cloudEditMenu.classList.add('hidden');
+    cloudEditMenu.classList.remove('open');
     cloudEditMenuInputField.value = '';
 
 });
