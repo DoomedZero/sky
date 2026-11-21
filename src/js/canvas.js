@@ -38,8 +38,7 @@ circle1.addEventListener('click', event => {
 
 });
 
-createText.addEventListener("click", () => {
-
+function createTextFun() {
   const dragBox = document.createElement("div");
   dragBox.classList.add("drag-box");
 
@@ -112,7 +111,10 @@ createText.addEventListener("click", () => {
     dragBox.classList.remove("is-dragging");
     dragBox.releasePointerCapture(e.pointerId);
   });
+}
 
+createText.addEventListener("click", () => {
+  createTextFun();
 });
 
 document.addEventListener('keydown', (event) => {
@@ -151,6 +153,14 @@ document.addEventListener('keydown', (event) => {
       toggleSunMenu();
 
     }
+  }
+
+  if (event.key.toLowerCase() === 't'
+    && !event.ctrlKey
+    && !event.metaKey
+    && !event.altKey) {
+
+    createTextFun();
   }
 
 });
