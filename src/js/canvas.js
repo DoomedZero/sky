@@ -73,6 +73,7 @@ function createTextFun() {
   // Disable editing when clicking outside so single-click dragging works
   canvasText.addEventListener("blur", () => {
     canvasText.contentEditable = "false";
+    canvasText.classList.add('disabled-text');
   });
 
   dragBox.addEventListener("pointerdown", (e) => {
@@ -161,6 +162,7 @@ document.addEventListener('keydown', (event) => {
     && !event.altKey) {
 
     createTextFun();
+    event.preventDefault();
   }
 
 });

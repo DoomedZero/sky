@@ -91,3 +91,7 @@ main {
   /* Overrides parent so the blinking cursor appears */
   -webkit-user-select: text;
 }
+
+.disabled-text {
+  user-select: none;
+}
