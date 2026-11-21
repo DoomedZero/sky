@@ -12,6 +12,24 @@ no unwanted bloat on UI, rather a mountain of features that are just so hard to 
 (sun menu, create menu, edit menu, textbox creation etc..), and note that
 the amount of trial and error was very huge, especially the keyboard support.
 
+### Shortcut Keys
+
+##### Home Page
+
+S - Sun
+C - Create clouds (only after sun menu is opened)
+i - to focus in input field
+Esc - to stop focus from input field
+(You have to escape from input fields to use enter and delete)
+Enter - to save or change cloud
+Delete - to delete cloud
+
+##### Canvas Page
+
+H - Go to home
+T - create text box
+S, i, Esc work as home page
+
 ### Features 
 
 1. A calm sky where you create workspace pointer(icon) / clouds.
