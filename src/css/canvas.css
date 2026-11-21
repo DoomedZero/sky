@@ -65,33 +65,31 @@ main {
 
 .drag-box {
   position: absolute;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  min-width: fit-content;
-  min-height: 30px;
-  background-color: aliceblue;
-  color: #36454F;
-  border-radius: 8px;
-  padding: 12px;
-  cursor: grab;
-  touch-action: none;
-}
-
-.drag-box.is-dragging {
-  cursor: grabbing;
+  top: 50%;
+  cursor: move;
   user-select: none;
-  -webkit-user-select: none;
+  touch-action: none;
+  background: aliceblue;
+  padding: 12px;
+  border-radius: 8px;
 }
 
+/* Ignore mouse clicks on text until double-clicked */
 .canvas-text {
+  pointer-events: none;
+  min-width: 50px;
   outline: none;
+  color: #36454F;
+  min-width: 4px;
+}
+
+/* Re-enable normal text clicking/selection when editing */
+.drag-box.editing {
   cursor: text;
   user-select: text;
-  /* Overrides parent so the blinking cursor appears */
-  -webkit-user-select: text;
 }
 
-.disabled-text {
-  user-select: none;
+.drag-box.editing .canvas-text {
+  pointer-events: auto;
 }

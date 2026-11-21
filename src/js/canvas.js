@@ -40,77 +40,49 @@ circle1.addEventListener('click', event => {
 
 function createTextFun() {
   const dragBox = document.createElement("div");
-  dragBox.classList.add("drag-box");
+  dragBox.className = "drag-box";
 
   const canvasText = document.createElement("div");
-  canvasText.classList.add("canvas-text");
+  canvasText.className = "canvas-text";
   canvasText.contentEditable = "true";
-  canvasText.textContent = "";
 
   dragBox.appendChild(canvasText);
   main.appendChild(dragBox);
+  canvasText.focus(); // Empty div doesn't need Range/Selection math!
 
-  // Focus and place the blinking cursor at the end of "Text"
-  canvasText.focus();
-  const range = document.createRange();
-  range.selectNodeContents(canvasText);
-  range.collapse(false);
-  const sel = window.getSelection();
-  sel.removeAllRanges();
-  sel.addRange(range);
+  let offsetX = 0, offsetY = 0, isDragging = false;
 
-  // State scoped to this specific textbox
-  let isDragging = false;
-  let offsetX = 0;
-  let offsetY = 0;
-
-  // Double-click to re-enter edit mode later
+  // Toggle editing via a single CSS class on the parent
   dragBox.addEventListener("dblclick", () => {
-    canvasText.contentEditable = "true";
+    dragBox.classList.add("editing");
     canvasText.focus();
   });
 
-  // Disable editing when clicking outside so single-click dragging works
   canvasText.addEventListener("blur", () => {
-    canvasText.contentEditable = "false";
-    canvasText.classList.add('disabled-text');
+    dragBox.classList.remove("editing");
   });
 
+  // Dragging
   dragBox.addEventListener("pointerdown", (e) => {
-    // Allow normal typing/cursor movement if actively editing
-    if (document.activeElement === canvasText) return;
-
-    canvasText.blur();
-    window.getSelection()?.removeAllRanges();
-
-    // Remove the centering transform smoothly on the first drag
-    const boxRect = dragBox.getBoundingClientRect();
-    const parentRect = main.getBoundingClientRect();
-    dragBox.style.transform = "none";
-    dragBox.style.left = `${boxRect.left - parentRect.left}px`;
-    dragBox.style.top = `${boxRect.top - parentRect.top}px`;
+    if (dragBox.classList.contains("editing")) return;
 
     isDragging = true;
+    const boxRect = dragBox.getBoundingClientRect();
     offsetX = e.clientX - boxRect.left;
     offsetY = e.clientY - boxRect.top;
 
-    dragBox.classList.add("is-dragging");
     dragBox.setPointerCapture(e.pointerId);
   });
 
   dragBox.addEventListener("pointermove", (e) => {
     if (!isDragging) return;
     const parentRect = main.getBoundingClientRect();
-
     dragBox.style.left = `${e.clientX - parentRect.left - offsetX}px`;
     dragBox.style.top = `${e.clientY - parentRect.top - offsetY}px`;
   });
 
-  dragBox.addEventListener("pointerup", (e) => {
-    if (!isDragging) return;
+  dragBox.addEventListener("pointerup", () => {
     isDragging = false;
-    dragBox.classList.remove("is-dragging");
-    dragBox.releasePointerCapture(e.pointerId);
   });
 }
 
