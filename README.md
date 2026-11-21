@@ -16,18 +16,18 @@ the amount of trial and error was very huge, especially the keyboard support.
 
 ##### Home Page
 
-S - Sun
-C - Create clouds (only after sun menu is opened)
-i - to focus in input field
-Esc - to stop focus from input field
+1. S - Sun
+2. C - Create clouds (only after sun menu is opened)
+3. i - to focus in input field
+4. Esc - to stop focus from input field
 (You have to escape from input fields to use enter and delete)
-Enter - to save or change cloud
-Delete - to delete cloud
+5. Enter - to save or change cloud
+6. Delete - to delete cloud
 
 ##### Canvas Page
 
-H - Go to home
-T - create text box
+1. H - Go to home
+2. T - create text box
 S, i, Esc work as home page
 
 ### Features 
