@@ -211,8 +211,18 @@ document.addEventListener('keydown', (event) => {
 
     // Ignore if user is typing in an input, textarea, or editable field
     const tag = event.target.tagName;
-    if (tag === 'INPUT' || tag === 'TEXTAREA' || event.target.isContentEditable) {
+    const isEditable =
+        tag === 'INPUT' ||
+        tag === 'TEXTAREA' ||
+        event.target.isContentEditable;
+
+    if (isEditable) {
+        
+        if (event.key === "Escape") {
+            event.target.blur();
+        }
         return;
+
     }
 
     if (event.key.toLowerCase() === 's'
@@ -232,7 +242,7 @@ document.addEventListener('keydown', (event) => {
             && !event.ctrlKey
             && !event.metaKey
             && !event.altKey) {
-            
+
             sunMenu.classList.remove('sun-open');
             cloudCreateMenu.classList.add('open');
             main.classList.add('shrink-main');
