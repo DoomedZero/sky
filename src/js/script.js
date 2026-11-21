@@ -115,7 +115,7 @@ main.addEventListener('click', event => {
 
         main.classList.add('shrink-main');
 
-        console.log("isEditMenuOpen" ,isEditOpen);
+        console.log("isEditMenuOpen", isEditOpen);
 
         return;
 
@@ -202,7 +202,7 @@ document.addEventListener('keydown', (event) => {
         if (event.key === "Escape") {
             event.target.blur();
         }
-        
+
         return;
 
     }
@@ -262,6 +262,7 @@ document.addEventListener('keydown', (event) => {
             && !event.metaKey
             && !event.altKey) {
 
+            event.preventDefault();
             cloudCreateMenuInputField.focus();
 
             return;
@@ -306,9 +307,25 @@ document.addEventListener('keydown', (event) => {
             && !event.metaKey
             && !event.altKey) {
 
+            event.preventDefault();
             cloudEditMenuInputField.focus();
 
             return;
+        }
+
+        if (event.key.toLowerCase() === 'x'
+            && !event.ctrlKey
+            && !event.metaKey
+            && !event.altKey) {
+
+            cloudEditMenu.classList.remove('open');
+            cloudEditMenuInputField.value = '';
+            toggleEditMenu();
+
+            main.classList.remove('shrink-main');
+
+            return;
+
         }
 
         if (event.key === 'Enter'
@@ -366,7 +383,7 @@ document.addEventListener('keydown', (event) => {
             cloudEditMenu.classList.remove('open');
             cloudEditMenuInputField.value = '';
             toggleEditMenu();
-            
+
             main.classList.remove('shrink-main');
 
             return;
