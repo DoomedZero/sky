@@ -48,6 +48,11 @@ function createTextFun() {
 
   dragBox.appendChild(canvasText);
   main.appendChild(dragBox);
+
+  const { x, y } = findEmptySpot(dragBox.offsetWidth || 120, dragBox.offsetHeight || 40);
+  dragBox.style.left = `${x}px`;
+  dragBox.style.top = `${y}px`;
+
   canvasText.focus(); // Empty div doesn't need Range/Selection math!
 
   let offsetX = 0, offsetY = 0, isDragging = false;
@@ -84,6 +89,53 @@ function createTextFun() {
   dragBox.addEventListener("pointerup", () => {
     isDragging = false;
   });
+}
+
+function findEmptySpot(boxWidth, boxHeight) {
+  const existingBoxes = [...main.querySelectorAll(".drag-box")].map((el) => ({
+    x: el.offsetLeft,
+    y: el.offsetTop,
+    w: el.offsetWidth || boxWidth,
+    h: el.offsetHeight || boxHeight,
+  }));
+
+  const centerX = (main.clientWidth - boxWidth) / 2;
+  const centerY = (main.clientHeight - boxHeight) / 2;
+  const padding = 10; // Minimum gap between text boxes
+
+  const isOverlapping = (x, y) =>
+    existingBoxes.some(
+      (b) =>
+        x < b.x + b.w + padding &&
+        x + boxWidth + padding > b.x &&
+        y < b.y + b.h + padding &&
+        y + boxHeight + padding > b.y
+    );
+
+  // 1. Try the exact center first
+  if (!isOverlapping(centerX, centerY)) {
+    return { x: centerX, y: centerY };
+  }
+
+  // 2. Spiral outward in 20px rings until an open spot is found
+  for (let radius = 20; radius < Math.max(main.clientWidth, main.clientHeight); radius += 20) {
+    for (let angle = 0; angle < Math.PI * 2; angle += Math.PI / 6) {
+      const x = Math.round(centerX + Math.cos(angle) * radius);
+      const y = Math.round(centerY + Math.sin(angle) * radius);
+
+      // Stay inside the main container boundaries
+      if (x < 0 || y < 0 || x + boxWidth > main.clientWidth || y + boxHeight > main.clientHeight) {
+        continue;
+      }
+
+      if (!isOverlapping(x, y)) {
+        return { x, y };
+      }
+    }
+  }
+
+  // Fallback if canvas is completely full
+  return { x: centerX, y: centerY };
 }
 
 createText.addEventListener("click", () => {
