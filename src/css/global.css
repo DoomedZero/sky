@@ -73,7 +73,3 @@ body {
 #circle-1 h3 {
   user-select: none;
 }
-
-@view-transition {
-  navigation: auto;
-}
