@@ -12,6 +12,18 @@ no unwanted bloat on UI, rather a mountain of features that are just so hard to 
 (sun menu, create menu, edit menu, textbox creation etc..), and note that
 the amount of trial and error was very huge, especially the keyboard support.
 
+### What is this project?, How I made it?
+(When I was shipping that auto generated requirements told me to add this section
+but I guess it is unnecessary)
+This project's core idea has been consistent from starting
+"Create a SKY that I would to work in!"
+and first I created the Sky, clouds, the sun and initial design of menus, 
+then I shifted from UI based changes to object based changes (changed DS of clouds)
+then some animations and keyboard support.
+In canvas page I created a side menu, it creates textbox
+which can be moved around, and is editable though not persistent
+Future upgrades are already planned!
+
 ### How to run?
 
 1. Open the link - [Sky](https://sky-z.netlify.app/)
@@ -21,6 +33,22 @@ or
 1. Download the project zip
 2. Extract it and run it with a server
 (Locally tested with live server - VS Code Extention)
+
+### Screenshots (requested at ship time requirements)
+
+1. Sun menu in home page and canvas page 
+![Architecture Diagram](./src/img/ss/sun-create.png)
+![Architecture Diagram](./src/img/ss/sun-home.png)
+
+2. Create and edit menu
+![Architecture Diagram](./src/img/ss/create.png)
+![Architecture Diagram](./src/img/ss/edit.png)
+
+3. Clouds created in home page
+![Architecture Diagram](./src/img/ss/sky-home.png)
+
+4. Textbox created, edit and moved in school SKY
+![Architecture Diagram](./src/img/ss/text.png)
 
 ### Shortcut Keys
 
@@ -39,22 +67,6 @@ or
 1. H - Go to home
 2. T - create text box
 S, i, Esc work as home page
-
-### Screenshots (requested at ship time requirements)
-
-1. Sun menu in home page and canvas page 
-![Architecture Diagram](./src/img/ss/sun-create.png)
-![Architecture Diagram](./src/img/ss/sun-home.png)
-
-2. Create and edit menu
-![Architecture Diagram](./src/img/ss/create.png)
-![Architecture Diagram](./src/img/ss/edit.png)
-
-3. Clouds created in home page
-![Architecture Diagram](./src/img/ss/sky-home.png)
-
-4. Textbox created, edit and moved in school SKY
-![Architecture Diagram](./src/img/ss/text.png)
 
 
 ### Features 
