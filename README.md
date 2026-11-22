@@ -12,6 +12,16 @@ no unwanted bloat on UI, rather a mountain of features that are just so hard to 
 (sun menu, create menu, edit menu, textbox creation etc..), and note that
 the amount of trial and error was very huge, especially the keyboard support.
 
+### How to run?
+
+1. Open the link - [Sky](https://sky-z.netlify.app/)
+
+or
+
+1. Download the project zip
+2. Extract it and run it with a server
+(Locally tested with live server - VS Code Extention)
+
 ### Shortcut Keys
 
 ##### Home Page
