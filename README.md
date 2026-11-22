@@ -40,6 +40,23 @@ or
 2. T - create text box
 S, i, Esc work as home page
 
+### Screenshots (requested at ship time requirements)
+
+1. Sun menu in home page and canvas page 
+![Architecture Diagram](./src/img/ss/sun-create.png)
+![Architecture Diagram](./src/img/ss/sun-home.png)
+
+2. Create and edit menu
+![Architecture Diagram](./src/img/ss/create.png)
+![Architecture Diagram](./src/img/ss/edit.png)
+
+3. Clouds created in home page
+![Architecture Diagram](./src/img/ss/sky-home.png)
+
+4. Textbox created, edit and moved in school SKY
+![Architecture Diagram](./src/img/ss/text.png)
+
+
 ### Features 
 
 1. A calm sky where you create workspace pointer(icon) / clouds.
